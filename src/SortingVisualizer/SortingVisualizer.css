@@ -1,0 +1,21 @@
+.container{
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    top: 100px;
+}
+.array-bar{
+    width: 7px;
+    background-color: olive;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.slider{
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    position: absolute;
+    left: 40%;
+    top: 1000px;
+}
