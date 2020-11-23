@@ -8,7 +8,7 @@
     width: 7px;
     background-color: olive;
     display: inline-block;
-    margin: 0 2px;
+    margin: 0 1px;
 }
 
 .slider{
@@ -19,3 +19,25 @@
     left: 40%;
     top: 1000px;
 }
+body{
+    background-color: ghostwhite;
+}
+
+button{
+    background-color: olive;
+    color:ghostwhite;
+    border: 3px solid ghostwhite;
+    padding: 15px 32px;
+    margin: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: ghostwhite; /* Green */
+    color: black;
+    border: 3px solid olive;
+  }

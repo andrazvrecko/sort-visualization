@@ -19,7 +19,6 @@ export default class SortingVisualizer extends React.Component {
     }
 
     resetArray(){
-        const {width} = this.state;
         const array = [];
         
         if(this.state.arraySize > getMaxElements(this.state.width)){
@@ -30,6 +29,11 @@ export default class SortingVisualizer extends React.Component {
             array.push(randomIntFromInterval(5,700));
         }
         this.setState({array});
+
+        const arrayBars = document.getElementsByClassName('array-bar');
+        for(let i = 0; i < arrayBars.length; i++){
+            arrayBars[i].style.backgroundColor='olive';
+        }
     }
 
     componentDidMount(){
@@ -57,7 +61,10 @@ export default class SortingVisualizer extends React.Component {
             newAnimations.push(animation.compare);
             newAnimations.push(animation.swap);
         }
-        console.log(newAnimations);
+        let target = 3 * this.state.array.length - 3;
+        let dist = 9 + (this.state.array.length - 5)*3;
+        let lastElem = this.state.array.length - 1;
+
         for(let i = 0; i < newAnimations.length; i++){
             const arrayBars = document.getElementsByClassName('array-bar');
             const isColorChange = i % 3 !== 2;
@@ -65,7 +72,7 @@ export default class SortingVisualizer extends React.Component {
                 const [oneIdx, twoIdx] = newAnimations[i];
                 const oneStyle = arrayBars[oneIdx].style;
                 const twoStyle = arrayBars[twoIdx].style;
-                const color = i % 3 === 0 ? 'red' : 'olive';
+                const color = i % 3 === 0 ? 'crimson' : 'olive';
                 setTimeout(() => {
                     oneStyle.backgroundColor = color;
                     twoStyle.backgroundColor = color;
@@ -82,9 +89,25 @@ export default class SortingVisualizer extends React.Component {
                         twoStyle.height = temp;
                     }
                 }
-                , i * (1/this.state.speed));
+                , i * (1/this.state.speed))
+            }
+            if(i + 1 === target){
+                console.log("Target: ", target, " Distance: ", dist, " Elem: ", lastElem);
+                target = target + dist;
+                dist = dist - 3;
+                const currElem = lastElem;
+                lastElem = lastElem - 1;
+                setTimeout(() => {      
+                    arrayBars[currElem].style.backgroundColor='teal';
+                }
+                , i * (1/this.state.speed))
             }
         }
+        const arrayBars = document.getElementsByClassName('array-bar');
+        setTimeout(() => {   
+            arrayBars[0].style.backgroundColor='teal';
+        }
+        , newAnimations.length * (1/this.state.speed))
     }
 
     quickSort() {
@@ -105,7 +128,7 @@ export default class SortingVisualizer extends React.Component {
                 const [oneIdx, twoIdx] = newAnimations[i];
                 const oneStyle = arrayBars[oneIdx].style;
                 const twoStyle = arrayBars[twoIdx].style;
-                const color = i % 3 === 0 ? 'red' : 'olive';
+                const color = i % 3 === 0 ? 'crimson' : 'olive';
                 setTimeout(() => {
                     oneStyle.backgroundColor = color;
                     twoStyle.backgroundColor = color;
@@ -193,7 +216,7 @@ function getBarWidth(width, amount){
     if (typeof width !== 'undefined'){
         width = Math.floor(width * 0.9);
         let newWidth = Math.floor(width/amount)
-        return newWidth - 4;
+        return newWidth - 2;
     }
     else return 7;
 
