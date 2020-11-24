@@ -11,13 +11,17 @@
     margin: 0 1px;
 }
 
-.slider{
+.controls{
     margin-left: auto;
     margin-right: auto;
     width: 20%;
     position: absolute;
     left: 40%;
     top: 1000px;
+    border: 5px solid olive;
+    padding: 15px;
+    background-color: whitesmoke;
+    
 }
 body{
     background-color: ghostwhite;
@@ -27,7 +31,7 @@ button{
     background-color: olive;
     color:ghostwhite;
     border: 3px solid ghostwhite;
-    padding: 15px 32px;
+    padding: 7px 16px;
     margin: 1px;
     text-align: center;
     text-decoration: none;
@@ -41,3 +45,8 @@ button:hover {
     color: black;
     border: 3px solid olive;
   }
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
